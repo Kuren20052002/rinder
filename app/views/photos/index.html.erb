@@ -2,10 +2,28 @@
 
 <div>
   <%= link_to "Generate Random Image", photos_path(random_img: true), method: :get%>
+  <% if @random_img %>
+      <%= link_to "Delete Random Image", photos_path, method: :get%>
+  <% end %>
 </div>
 
+<div>
+  <%= form_with url: root_path, method: :get do |form| %>
+    <%= form.hidden_field :random_img, value: false %> 
+    <%= form.text_field :img_search_word, placeholder: "Search for images" %>
+    <%= form.submit "Search" %>
+  <% end %>
+</div>
+
+
 <% if @random_img %>
+  <div class="random">
+    <%= render "img", img: @random_img%>
+  </div>
+<% end %>
+
+<% if @search_imgs %>
   <div>
-    <%= render "random_img", random_img: @random_img%>
+    <%= render "search_imgs", search_imgs: @search_imgs%>
   </div>
 <% end %>
