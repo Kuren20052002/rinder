@@ -1,0 +1,11 @@
+<h1>Photos</h1>
+
+<div>
+  <%= link_to "Generate Random Image", photos_path(random_img: true), method: :get%>
+</div>
+
+<% if @random_img %>
+  <div>
+    <%= render "random_img", random_img: @random_img%>
+  </div>
+<% end %>
